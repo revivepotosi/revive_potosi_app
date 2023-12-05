@@ -13,6 +13,7 @@ import { Text } from '@ui-kitten/components';
 import useLanguage from '../../../hooks/useLanguage';
 import NAVIGATION_TITLE_STR from './NavigationTitleStr';
 import AppLogo from '../../../components/AppLogo';
+import HeaderLeft from '../../../components/HeaderLeft';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,12 +26,15 @@ const AppNavigation = () => {
         navigation.reset({
             index: 0,
             routes: [{
-                name: ROUTES.home
+                name: ROUTES.home,
             }],
         });
     }, []);
 
     const renderTabBar = (props) => <BottomTabBar {...props} />;
+    const renderLeft = () => (navigation.canGoBack() ? (
+        <HeaderLeft onPress={navigation.popToTop}/>
+        ) : null);
     const renderTitle = (title) => (
         <Text style={[Style.c_white, Style.title_large, isIos && Style.mb_4]}>
             {title}
@@ -56,7 +60,7 @@ const AppNavigation = () => {
                 name={ROUTES.exploreNavigation}
                 component={ExploreNavigation}
                 options={{
-                    headerShown: false
+                    headerShown: false,
                 }}
             />
             <Tab.Screen
@@ -64,6 +68,7 @@ const AppNavigation = () => {
                 component={InfoScreen}
                 options={{
                     headerTitle: () => renderTitle(NAVIGATION_TITLE_STR.info[languageCode]),
+                    headerLeft: renderLeft,
                     headerRight: renderRight,
                     headerRightContainerStyle: isIos ? Style.jc_fs : Style.jc_c,
                 }}
@@ -73,6 +78,7 @@ const AppNavigation = () => {
                 component={SettingScreen}
                 options={{
                     headerTitle: () => renderTitle(NAVIGATION_TITLE_STR.setting[languageCode]),
+                    headerLeft: renderLeft,
                     headerRight: renderRight,
                     headerRightContainerStyle: isIos ? Style.jc_fs : Style.jc_c,
                 }}

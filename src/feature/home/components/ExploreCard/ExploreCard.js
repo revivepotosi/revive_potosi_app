@@ -8,7 +8,7 @@ import BadgeIcon from '../../../../components/BadgeIcon';
 import EXPLORE_CARD_STR from './ExploreCardStr';
 import useLanguage from '../../../../hooks/useLanguage';
 
-const ExploreCard = ({ style }) => {
+const ExploreCard = ({ style, onPress }) => {
     const { languageCode } = useLanguage();
     return (
         <View
@@ -32,7 +32,7 @@ const ExploreCard = ({ style }) => {
                     {EXPLORE_CARD_STR.title[languageCode]}
                 </Text>
             </View>
-            <Button iconName="camera-alt">
+            <Button iconName="camera-alt" onPress={onPress}>
                 {EXPLORE_CARD_STR.button.label[languageCode]}
             </Button>
         </View>
@@ -41,10 +41,12 @@ const ExploreCard = ({ style }) => {
 
 ExploreCard.propTypes = {
     style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    onPress: PropTypes.func,
 };
 
 ExploreCard.defaultProps = {
     style: {},
+    onPress: () => null,
 };
 
 export default ExploreCard;
