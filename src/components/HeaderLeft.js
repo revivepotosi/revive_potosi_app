@@ -4,11 +4,21 @@ import PropTypes from 'prop-types';
 import Icon from './Icon';
 import Style from '../style/Style';
 
-const HeaderLeft = ({onPress}) => {
+const HeaderLeft = ({ onPress }) => {
     const isAndroid = Platform.OS === 'android';
     const iconName = isAndroid ? 'keyboard-backspace' : 'keyboard-arrow-left';
     return (
-        <Pressable style={[Style.ml_2, isAndroid || Style.mb_2]} onPress={onPress}>
+        <Pressable
+            style={[
+                Style.ml_2,
+                Style.w_40,
+                Style.h_40,
+                Style.jc_c,
+                Style.ai_c,
+                isAndroid || Style.mb_2,
+            ]}
+            onPress={onPress}
+        >
             <Icon
                 iconName={iconName}
                 style={Style.c_white}

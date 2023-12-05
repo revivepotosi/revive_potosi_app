@@ -20,6 +20,7 @@ const ExploreNavigation = () => {
     const navigation = useNavigation();
     const isIos = Platform.OS === 'ios';
     const goBack = () => {
+        if(getCurrentScreenName() === APP_ROUTES.home) return;
         if(getCurrentScreenName() === ROUTES.explore) {
             navigation.navigate(APP_ROUTES.home);
             return;

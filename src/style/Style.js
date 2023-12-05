@@ -26,10 +26,12 @@ const colors = {
 const width = {
     w_window: { width: Dimensions.get('window').width },
     w_full: { width: '100%' },
+    w_40: { width: 40 },
 }
 
 const height = {
     h_full: { height: '100%' },
+    h_40: { height: 40 },
 }
 
 const spacerSize = {
