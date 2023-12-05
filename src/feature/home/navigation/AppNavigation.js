@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { getCurrentScreenName } from '../../../navigation/navigationService';
 import ROUTES from './routes';
 import HomeScreen from '../containers/HomeScreen';
 import ExploreNavigation from '../../explore/navigation/Navigation';
@@ -31,9 +32,17 @@ const AppNavigation = () => {
         });
     }, []);
 
+    const goBack = () => {
+        if([ROUTES.info, ROUTES.setting].includes(getCurrentScreenName())) {
+            navigation.navigate(ROUTES.home);
+            return;
+        }
+        navigation.goBack();
+    };
+
     const renderTabBar = (props) => <BottomTabBar {...props} />;
     const renderLeft = () => (navigation.canGoBack() ? (
-        <HeaderLeft onPress={navigation.popToTop}/>
+        <HeaderLeft onPress={goBack}/>
         ) : null);
     const renderTitle = (title) => (
         <Text style={[Style.c_white, Style.title_large, isIos && Style.mb_4]}>
