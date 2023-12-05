@@ -33,6 +33,7 @@ const AppNavigation = () => {
     }, []);
 
     const goBack = () => {
+        if(getCurrentScreenName() === ROUTES.home) return;
         if([ROUTES.info, ROUTES.setting].includes(getCurrentScreenName())) {
             navigation.navigate(ROUTES.home);
             return;
