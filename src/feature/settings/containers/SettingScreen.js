@@ -9,6 +9,7 @@ import SETTING_SCREEN_STR from '../constants/SettingScreenStr';
 import Container from '../../../components/Container';
 import Button from '../../../components/Button';
 import ROUTES from '../../../navigation/routes';
+import ON_BOARDING_ROUTES from '../../onBoarding/navigation/routes';
 
 const SettingScreen = () => {
     const { languageCode, changeLanguage } = useLanguage();
@@ -28,7 +29,7 @@ const SettingScreen = () => {
     };
     const goOnBoarding = () => {
         cleanOnBoarding();
-        navigation.navigate(ROUTES.onBoardingNavigation);
+        navigation.navigate(ROUTES.onBoardingNavigation, { screen: ON_BOARDING_ROUTES.stepOne });
     };
 
     return (
